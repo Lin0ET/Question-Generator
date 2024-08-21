@@ -1,18 +1,31 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const cors = require('cors');
-const app = express();
-const questionRoutes = require('./routes/questions'); // 确保路径正确
+const sequelize = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
 
-app.use(cors());
-app.use(express.json());
-app.use('/questions', questionRoutes); // 使用问题路由
+dotenv.config();  // 读取 .env 文件中的配置
+
+const app = express();
+
+// 使用 CORS 中间件，允许来自 'http://localhost:3000' 的请求
+app.use(cors({
+  origin: 'http://localhost:3000',  // 允许的前端来源
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // 允许的 HTTP 方法
+  allowedHeaders: ['Content-Type', 'Authorization'],  // 允许的头部信息
+  credentials: true,  // 允许传递凭证（如 cookies）
+}));
+
+app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Question Generator API!');
-  });
-
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+sequelize.sync({ force: false }) // 设置为 true 将重新创建表
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`服务器运行在端口 ${PORT}`);
+    });
+  })
+  .catch(err => console.error('数据库同步失败:', err.message));

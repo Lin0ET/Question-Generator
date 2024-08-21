@@ -1,0 +1,8 @@
+[
+    {
+        "registerUrl": "/api/auth/register"
+    },
+    {
+        "loginUrl": "/api/auth/login"
+    }
+]

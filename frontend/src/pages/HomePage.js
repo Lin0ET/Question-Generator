@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import home1 from '../assets/img/home1.png';
 import t1 from '../assets/img/t1.png';
 import t2 from '../assets/img/t2.png';
@@ -11,13 +12,21 @@ import icon3 from '../assets/icons/icon3.svg';
 import icon4 from '../assets/icons/icon4.svg';
 
 function HomePage() {
+
+  const navigate = useNavigate(); 
+
+  
+  const handleStart = () => {
+    navigate('/upload'); 
+  };
+
   return (
     <div className="container mx-auto p-4 bg-blue-50">
       <div className="text-center my-16 flex flex-col md:flex-row items-center justify-center">
         <img src={home1} alt="Home" className="w-3/4 md:w-1/2 lg:w-1/3 mb-8 md:mb-0 md:mr-8   border-gray-300 " />
         <div>
           <h1 className="text-4xl font-bold mb-4">無論任何課程，<br />都交給AI自動生成題目</h1>
-          <button className="btn btn-accent">開始使用</button>
+          <button className="btn btn-accent"  onClick={handleStart}>開始使用</button>
         </div>
       </div>
       <div className="text-center my-16">

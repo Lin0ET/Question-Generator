@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage'; 
 import UploadPage from './pages/UploadPage'; 
 import QuestionPage from './pages/QuestionPage'; 
-import Login from './components/Login';
-import Register from './components/Register';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
 
 function App() {
   return (
