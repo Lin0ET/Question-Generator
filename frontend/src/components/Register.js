@@ -58,10 +58,10 @@ export const Register = () => {
                 school: "",
                 city: ""
             });
-            alert("注册成功！");
+            alert("註冊成功！");
         } catch (error) {
-            console.error("注册失败", error);
-            alert("注册失败，请重试。");
+            console.error("註冊失敗", error);
+            alert("註冊失敗，请重试。");
         }
     };
     
@@ -69,19 +69,19 @@ export const Register = () => {
     return (
         <div>
             <div onClick={handleClickOpen}>
-                注册
+            註冊
             </div>
             <Dialog open={open} onClose={handleClose}>
                 <div>
                     <img className='modal-image' src={registerImg} alt="Register Illustration" />
                 </div>
-                <DialogTitle>注册账户</DialogTitle>
+                <DialogTitle>註冊帳號</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="请填写您的姓名"
+                        label="您的姓名"
                         type="text"
                         name="name"
                         value={data.name}
@@ -92,7 +92,7 @@ export const Register = () => {
                     <TextField
                         margin="dense"
                         id="email"
-                        label="请填写信箱"
+                        label="信箱"
                         type="email"
                         name="email"
                         value={data.email}
@@ -103,7 +103,7 @@ export const Register = () => {
                     <TextField
                         margin="dense"
                         id="password"
-                        label="请填写密码"
+                        label="密碼"
                         type="password"
                         name="password"
                         value={data.password}
@@ -114,7 +114,7 @@ export const Register = () => {
                     <TextField
                         margin="dense"
                         id="passwordConf"
-                        label="请填入确认密码"
+                        label="密碼"
                         type="password"
                         name="passwordConf"
                         value={data.passwordConf}
@@ -125,7 +125,7 @@ export const Register = () => {
                     <TextField
                         margin="dense"
                         id="school"
-                        label="请填写学校名称"
+                        label="學校"
                         type="text"
                         name="school"
                         value={data.school}
@@ -136,7 +136,7 @@ export const Register = () => {
                     <TextField
                         margin="dense"
                         id="city"
-                        label="请填写所在城市"
+                        label="城市"
                         type="text"
                         name="city"
                         value={data.city}
@@ -145,11 +145,11 @@ export const Register = () => {
                         onChange={handleChange}
                     />
                     <DialogContentText>
-                        已经有账号了吗？<Link component="button" underline="none"><Login>登录</Login></Link>
+                        已經有帳號了吗？<Link component="button" underline="none"><Login>登入</Login></Link>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button type="submit" onClick={handleSubmit}>注册</Button>
+                    <Button type="submit" onClick={handleSubmit}>註冊</Button>
                 </DialogActions>
             </Dialog>
         </div>

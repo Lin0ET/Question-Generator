@@ -44,7 +44,7 @@ export const Login = () => {
 
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', userData);
-            console.log("响应数据:", response.data);  // 打印响应数据
+            console.log("响应数据:", response.data);  
 
             setIsLoggedIn(true);
             setOpen(false);
@@ -54,14 +54,14 @@ export const Login = () => {
             });
 
        
-            // 保存用户状态和 token 信息
+            
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('userId', response.data.id);
             //localStorage.setItem('name', response.data.user.name);
             //localStorage.setItem('email', response.data.user.email);
 
             alert("登入成功!");
-            navigate("/questions"); // 根据需要更改跳转的页面
+            navigate("/questions"); 
         } catch (error) {
             alert("登入失敗 請確認帳號密碼");
             console.error(error.response ? error.response.data : error.message);

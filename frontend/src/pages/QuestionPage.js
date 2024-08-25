@@ -3,24 +3,32 @@ import { useLocation } from 'react-router-dom';
 
 function QuestionPage() {
   const location = useLocation();
-  const [questions, setQuestions] = useState(location.state?.questions || []);
+  const [content, setContent] = useState(location.state?.questions?.[0] || '');
+
+  const handleDownload = () => {
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'questions.txt';
+    link.click();
+  };
 
   return (
-    <div className="container mx-auto p-4 bg-blue-50 min-h-screen">
-      <h1 className="text-4xl font-bold mb-10 mt-2 text-center">题目编辑和查看</h1>
-      {questions.map(question => (
-        <div key={question.id} className="card bg-base-100 shadow-xl mb-4">
-          <div className="card-body">
-            <h2 className="card-title">题目 {question.id}: {question.text}</h2>
-            <ul>
-              {question.options.map((option, index) => (
-                <li key={index}>{option}</li>
-              ))}
-            </ul>
-            <p>答案: {question.answer}</p>
-          </div>
-        </div>
-      ))}
+    <div className="w-full p-4 bg-blue-50 min-h-screen">
+      <h1 className="text-4xl font-bold mb-10 mt-2 text-center">題目編輯和查看</h1>
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <textarea
+          className="w-full h-96 p-4 border border-gray-300 rounded-lg"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <button
+          className="mt-4 btn btn-primary"
+          onClick={handleDownload}
+        >
+          下載為文件
+        </button>
+      </div>
     </div>
   );
 }

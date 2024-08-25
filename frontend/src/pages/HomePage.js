@@ -21,7 +21,7 @@ function HomePage() {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-blue-50">
+    <div className="container mx-auto p-4 bg-blue-50 ">
       <div className="text-center my-16 flex flex-col md:flex-row items-center justify-center">
         <img src={home1} alt="Home" className="w-3/4 md:w-1/2 lg:w-1/3 mb-8 md:mb-0 md:mr-8   border-gray-300 " />
         <div>
