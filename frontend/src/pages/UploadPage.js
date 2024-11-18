@@ -22,7 +22,7 @@ function UploadPage() {
         setUploadStatus('正在請求生成題目...');
 
         const promptText = `
-        忘掉先前的所有聊天內容，請直接根據以下描述生成五道中文選擇題。嚴格按照以下格式，返回的內容僅包括問題和答案的純文字，不要添加任何額外的前言或解釋：
+        忘掉先前的所有聊天內容，請直接根據以下描述生成五道中文選擇題。嚴格按照以下格式，返回的內容僅包括問題和答案的純文字，不要添加任何額外的前言或解釋或是程式用語：
         1. 題目
             A. 選項一
             B. 選項二
@@ -77,6 +77,7 @@ function UploadPage() {
         <h1 className="text-4xl font-bold mb-4">生成新測驗題目</h1>
         <input type="file" accept=".txt" onChange={handleFileUpload} className="w-full max-w-lg mx-auto block" />
         {uploadStatus && <p className="text-center text-lg mt-4">{uploadStatus}</p>}
+     
       </div>
       <div className="flex justify-center mt-8">
         <img src={q4} alt="Upload Illustration" className="w-full max-w-md" />

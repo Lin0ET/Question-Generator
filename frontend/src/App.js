@@ -5,6 +5,8 @@ import UploadPage from './pages/UploadPage';
 import QuestionPage from './pages/QuestionPage'; 
 import { Login } from './components/Login';
 import { Register } from './components/Register';
+import ProtectedRoute from './components/ProtectedRoute'; // 导入 ProtectedRoute 组件
+
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
         <main className="flex-grow pt-16 w-full mx-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/upload" element={<UploadPage />} />
+            <Route path="/upload" element={<ProtectedRoute><UploadPage /></ProtectedRoute>} />
             <Route path="/questions" element={<QuestionPage />} />
           </Routes>
         </main>

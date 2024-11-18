@@ -7,7 +7,6 @@ import { Register } from './Register';
 
 export const Login = () => {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [role, setRole] = useState('student');
     const [open, setOpen] = useState(false);
     const [data, setData] = useState({
@@ -46,22 +45,16 @@ export const Login = () => {
             const response = await axios.post('http://localhost:5000/api/auth/login', userData);
             console.log("响应数据:", response.data);  
 
-            setIsLoggedIn(true);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userId', response.data.id);
+
+            alert("登入成功!");
             setOpen(false);
             setData({
                 email: "",
                 password: ""
             });
-
-       
-            
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userId', response.data.id);
-            //localStorage.setItem('name', response.data.user.name);
-            //localStorage.setItem('email', response.data.user.email);
-
-            alert("登入成功!");
-            navigate("/questions"); 
+            navigate("/upload"); // 登入成功後可以重定向到 /upload 或其他頁面
         } catch (error) {
             alert("登入失敗 請確認帳號密碼");
             console.error(error.response ? error.response.data : error.message);
